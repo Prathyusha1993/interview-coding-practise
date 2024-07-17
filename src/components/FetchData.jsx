@@ -4,9 +4,14 @@ import './Table.css';
 
 // https://randomuser.me/api/?results=20
 
+// const [data, setData] = useState([
+    //     { id: 1, name: 'Alice', age: 25, city: 'New York' },
+    //     { id: 2, name: 'Bob', age: 30, city: 'Chicago' },
+    //     { id: 3, name: 'Charlie', age: 35, city: 'San Francisco' },
+    // ]);
+
 const FetchData = () => {
     const [data, setData] = useState([]);
-    const [location, setLocation] = useState([]);
     const [sortConfig, setSortConfig] = useState({key: null,direction:'ascending'});
     const [search, setSearch] = useState('');
 
@@ -59,7 +64,7 @@ const FetchData = () => {
         .then((data) => {
             setData(data.data.results);
             // console.log(data.data.results);
-            setLocation(data.data.results[0].location);
+            // setLocation(data.data.results[0].location);
         }).catch((error) => {
             console.log(error);
         });
@@ -81,11 +86,10 @@ const FetchData = () => {
                     <th onClick={() => requestSort('name.first')} className={getClassNamesFor('name.first')}>FirstName</th>
                     <th onClick={() => requestSort('name.last')} className={getClassNamesFor('name.last')}>LastName</th>
                     <th onClick={() => requestSort('location.street.number')} className={getClassNamesFor('location.street.number')}>Street</th>
-                    {/* <th>Street Name</th> */}
+                    {/* <th>Street Name</th>*/}
                     <th onClick={() => requestSort('location.city')} className={getClassNamesFor('location.city')}>City</th>
                     <th onClick={() => requestSort('location.state')} className={getClassNamesFor('location.state')}>State</th>
-                    <th onClick={() => requestSort('location.country')} className={getClassNamesFor('location.country')}>Country</th>
-                    {/* <th>Location</th> */}
+                    <th onClick={() => requestSort('location.country')} className={getClassNamesFor('location.country')}>Country</th>  
                 </tr>
             </thead>
             <tbody>
@@ -95,8 +99,6 @@ const FetchData = () => {
                             <td>{item.name.first}</td>
                             <td>{item.name.last}</td>
                             <td>{item.location.street.number}, {item.location.street.name}</td>
-                            {/* <td>{item.location.street.number},{item.location.street.name}, {item.location.city}, {item.location.state},{item.location.country} </td> */}
-                            {/* <td>{item.location.street.name}</td> */}
                             <td>{item.location.city}</td>
                             <td>{item.location.state}</td>
                             <td>{item.location.country}</td>
